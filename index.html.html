@@ -1,0 +1,228 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ReelPro – ARYAN's Video Editing & Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<!-- Particles JS -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{
+  background: url('https://wallpaperaccess.com/full/1300680.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color:#fff;
+  line-height:1.6;
+  overflow-x:hidden;
+  position:relative;
+}
+body::before{
+  content:"";
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(0,0,0,0.65);
+  z-index:-1;
+  pointer-events:none;
+}
+#particles-js{position:fixed;width:100%;height:100%;top:0;left:0;z-index:-2;}
+
+/* Floating lines & circles animations */
+@keyframes floatLines {0%{transform:translateY(0) translateX(0);}50%{transform:translateY(-50px) translateX(30px);}100%{transform:translateY(0) translateX(0);}}
+.line{position:absolute;width:2px;height:100px;background: linear-gradient(180deg, #22d3ee, #6366f1);opacity:0.4;border-radius:2px;animation:floatLines 12s infinite ease-in-out;}
+@keyframes glowCircle {0%{transform:scale(0.8);opacity:0.6;}50%{transform:scale(1.2);opacity:0.2;}100%{transform:scale(0.8);opacity:0.6;}}
+.circle{position:absolute;border-radius:50%;border:1.5px solid #22d3ee;opacity:0.3;animation:glowCircle 6s infinite alternate;}
+
+/* Navbar */
+nav{display:flex;justify-content:space-between;align-items:center;padding:18px 30px;background:rgba(0,0,0,0.6);backdrop-filter:blur(8px);border-radius:12px;position:sticky;top:0;z-index:10;}
+nav h2{background:linear-gradient(90deg,#22d3ee,#6366f1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700;font-size:24px;}
+nav a{margin-left:20px;color:#fff;font-weight:500;text-decoration:none;transition:0.3s;}
+nav a:hover{color:#22d3ee;}
+
+/* Container */
+.container{max-width:1100px;margin:auto;padding:40px 20px}
+h1{text-align:center;font-size:42px;margin-bottom:20px;font-weight:700;background: linear-gradient(90deg,#22d3ee,#6366f1);-webkit-background-clip: text;-webkit-text-fill-color: transparent;animation:fadeIn 2s ease;}
+@keyframes fadeIn{0%{opacity:0;transform:translateY(-20px);}100%{opacity:1;transform:translateY(0);}}
+
+/* Description */
+.description{margin-bottom:50px;font-size:17px;line-height:1.9;text-align:justify;background: rgba(255,255,255,0.05);padding:25px;border-radius:20px;box-shadow:0 8px 20px rgba(0,0,0,0.5);animation:fadeIn 2s ease;}
+
+/* Portfolio Grid */
+.portfolio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;margin-bottom:20px;}
+.portfolio-card{background: rgba(0,0,0,0.85);border-radius:20px;overflow:hidden;box-shadow:0 10px 25px rgba(0,0,0,0.5);transition:0.4s;position:relative;}
+.portfolio-card img{width:100%;height:180px;object-fit:cover;transition:0.5s;}
+.portfolio-card:hover img{transform:scale(1.1);}
+.portfolio-card .card-content{padding:15px;text-align:center;}
+.portfolio-card .card-content h3{font-size:20px;margin-bottom:10px;}
+
+/* Single Portfolio Button */
+#singlePortfolioBtn{text-align:center;margin-top:20px;}
+#singlePortfolioBtn a{
+  display:inline-block;padding:15px 30px;background:linear-gradient(135deg,#6366f1,#22d3ee);
+  color:#fff;font-size:18px;border-radius:25px;text-decoration:none;
+  box-shadow:0 8px 20px rgba(0,0,0,0.5);transition:0.4s;
+}
+#singlePortfolioBtn a:hover{box-shadow:0 0 25px #22d3ee;transform:scale(1.05);}
+
+/* Form */
+form{background: rgba(0,0,0,0.85);padding:40px;border-radius:25px;box-shadow:0 20px 40px rgba(0,0,0,.5);backdrop-filter:blur(12px);margin-bottom:50px;animation:fadeIn 2s ease;}
+input,select,textarea{width:100%;padding:15px;margin-bottom:18px;border:none;border-radius:15px;font-size:16px;background:#000;color:#fff;transition:0.3s;outline:none;}
+input:focus,select:focus,textarea:focus{background:#111;box-shadow:0 0 15px #38bdf8;}
+select{appearance:none;padding-right:30px;cursor:pointer;}
+
+/* Price box */
+.price-box{background:linear-gradient(135deg,#6366f1,#22d3ee);padding:20px;border-radius:20px;font-size:22px;font-weight:bold;text-align:center;margin-bottom:25px;box-shadow:0 8px 25px rgba(0,0,0,0.4);animation:fadeIn 2s ease;}
+
+/* Payment */
+.payment{background:rgba(0,0,0,0.85);padding:25px;border-radius:20px;margin-bottom:30px;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,0.5);}
+.payment img{width:200px;border-radius:15px;margin:15px 0;transition:0.3s;}
+.payment img:hover{transform:scale(1.05);}
+
+/* Button */
+button{width:100%;padding:16px;border:none;border-radius:30px;background:linear-gradient(135deg,#22d3ee,#6366f1);color:#fff;font-size:18px;font-weight:bold;cursor:pointer;transition:0.4s;position:relative;overflow:hidden;margin-bottom:15px;}
+button::after{content:"";position:absolute;left:50%;top:50%;width:0;height:0;background:rgba(255,255,255,0.3);transform:translate(-50%,-50%);border-radius:50%;transition:0.6s;}
+button:active::after{width:200%;height:500%;transition:0s;}
+
+/* Footer */
+footer{text-align:center;padding:25px;font-size:14px;opacity:.8;margin-top:30px;animation:fadeIn 2s ease;}
+
+/* Responsive */
+@media(max-width:600px){h1{font-size:32px}}
+</style>
+</head>
+<body>
+
+<!-- Particles -->
+<div id="particles-js"></div>
+
+<!-- Floating Lines & Circles -->
+<div class="line" style="top:50px;left:100px;animation-duration:12s;"></div>
+<div class="line" style="top:200px;left:500px;animation-duration:18s;"></div>
+<div class="line" style="top:350px;left:300px;animation-duration:15s;"></div>
+<div class="circle" style="top:150px;left:250px;width:20px;height:20px;"></div>
+<div class="circle" style="top:400px;left:600px;width:25px;height:25px;"></div>
+<div class="circle" style="top:600px;left:150px;width:15px;height:15px;"></div>
+
+<nav>
+<h2>ReelPro</h2>
+<div>
+<a href="#order">Order</a>
+<a href="#portfolio">Portfolio</a>
+</div>
+</nav>
+
+<div class="container">
+<h1 id="order">Welcome to ReelPro – ARYAN</h1>
+
+<div class="description">
+<p>Hi! I am <b>ARYAN</b>, a professional video editor specializing in Instagram, YouTube, TikTok, Premium, and Commercial content. I create cinematic, premium-quality edits that go viral and engage audiences. Scroll down to view my portfolio and place your order!</p>
+</div>
+
+<!-- Portfolio Section -->
+<div class="portfolio-grid" id="portfolio">
+  <div class="portfolio-card">
+    <img src="https://picsum.photos/400/180?random=1" alt="Portfolio 1">
+    <div class="card-content"><h3>Instagram Reel Edit</h3></div>
+  </div>
+  <div class="portfolio-card">
+    <img src="https://picsum.photos/400/180?random=2" alt="Portfolio 2">
+    <div class="card-content"><h3>YouTube Video Edit</h3></div>
+  </div>
+  <div class="portfolio-card">
+    <img src="https://picsum.photos/400/180?random=3" alt="Portfolio 3">
+    <div class="card-content"><h3>TikTok Reel Edit</h3></div>
+  </div>
+  <div class="portfolio-card">
+    <img src="https://picsum.photos/400/180?random=4" alt="Portfolio 4">
+    <div class="card-content"><h3>Premium Edit</h3></div>
+  </div>
+  <div class="portfolio-card">
+    <img src="https://picsum.photos/400/180?random=5" alt="Portfolio 5">
+    <div class="card-content"><h3>Commercial Edit</h3></div>
+  </div>
+</div>
+
+<!-- Single Portfolio Button -->
+<div id="singlePortfolioBtn">
+  <a href="https://drive.google.com/drive/folders/1b9HfE8XQabHg8_NaZrDuCZCVULMReaU4?usp=sharing" target="_blank">View Full Portfolio</a>
+</div>
+
+<!-- Order Form -->
+<form id="orderForm" onsubmit="sendWhatsAppOrder();return false;">
+<input id="name" placeholder="Your Name" required>
+<input id="phone" placeholder="Your WhatsApp Number" required>
+<select id="platform" onchange="calcPriceOrder()" required>
+<option value="">Select Platform</option>
+<option>Instagram</option>
+<option>YouTube</option>
+<option>TikTok</option>
+<option>Commercial</option>
+<option>Other</option>
+</select>
+<select id="style" onchange="calcPriceOrder()" required>
+<option value="">Editing Style</option>
+<option>Normal</option>
+<option>Cinematic</option>
+<option>Premium</option>
+</select>
+<select id="quantity" onchange="calcPriceOrder()" required>
+<option value="">Select Reel Quantity</option>
+<option>1 Reel</option>
+<option>5 Reels</option>
+<option>10 Reels</option>
+</select>
+<div class="price-box" id="priceOrder">Payable Amount: ₹0</div>
+<textarea id="details" rows="4" placeholder="Project details / deadline" required></textarea>
+<button type="submit">Confirm Order on WhatsApp</button>
+</form>
+
+<!-- UPI Payment Section -->
+<div class="payment">
+<h2>Advance Payment (Paytm UPI)</h2>
+<p id="qrDesc">Select Reel Quantity to generate QR</p>
+<img id="qrImg" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=9412988700@ptsbi&pn=ARYAN&am=100&cu=INR&tn=ReelPro+Advance+Payment" alt="UPI QR">
+<input id="upiname" placeholder="Name for Payment" required>
+<input id="upiwhatsapp" placeholder="Your WhatsApp Number" required>
+<select id="upiquantity" onchange="updateQR()" required>
+<option value="">Select Reel Quantity</option>
+<option value="100">1 Reel - ₹100 Advance</option>
+<option value="500">5 Reels - ₹500 Advance</option>
+<option value="1000">10 Reels - ₹1000 Advance</option>
+</select>
+<select id="upistyle" onchange="updateQR()" required>
+<option value="">Editing Style</option>
+<option>Normal</option>
+<option>Cinematic</option>
+<option>Premium</option>
+</select>
+<button onclick="paymentSuccess()">Payment Successful</button>
+</div>
+
+<footer>
+© 2026 ReelPro – ARYAN’s Top Video Editing Agency
+</footer>
+
+<script>
+// Particles
+particlesJS("particles-js", {"particles":{"number":{"value":60},"color":{"value":"#38bdf8"},"shape":{"type":"circle"},"opacity":{"value":0.5},"size":{"value":4},"line_linked":{"enable":true,"distance":180,"color":"#38bdf8","opacity":0.2,"width":1},"move":{"enable":true,"speed":3}},"interactivity":{"events":{"onhover":{"enable":true,"mode":"grab"}},"modes":{"grab":{"distance":150,"line_linked":{"opacity":0.4}}}}});
+
+// Order pricing
+const pricingOrder = {"Normal":{"1 Reel":300,"5 Reels":1400,"10 Reels":2700},"Cinematic":{"1 Reel":500,"5 Reels":2300,"10 Reels":4400},"Premium":{"1 Reel":400,"5 Reels":1800,"10 Reels":3800}};
+function calcPriceOrder(){let style=document.getElementById("style").value;let quantity=document.getElementById("quantity").value;let price=0;if(style && quantity){price=pricingOrder[style][quantity];}document.getElementById("priceOrder").innerText="Payable Amount: ₹"+price;}
+
+// WhatsApp Order
+function sendWhatsAppOrder(){let name=document.getElementById("name").value;let phone=document.getElementById("phone").value;let platform=document.getElementById("platform").value;let style=document.getElementById("style").value;let quantity=document.getElementById("quantity").value;let details=document.getElementById("details").value;let price=document.getElementById("priceOrder").innerText;let message="🔥 ReelPro Paid Order 🔥%0A%0A"+"Name: "+name+"%0A"+"WhatsApp: "+phone+"%0A"+"Platform: "+platform+"%0A"+"Style: "+style+"%0A"+"Quantity: "+quantity+"%0A"+price+"%0A"+"Details: "+details;window.open("https://wa.me/919412988700?text="+message,"_blank");}
+
+// UPI QR auto-update
+function updateQR(){let amount=document.getElementById("upiquantity").value;let style=document.getElementById("upistyle").value;let qtyText=document.getElementById("upiquantity").selectedOptions[0].text;if(amount && style){document.getElementById("qrDesc").innerText="Advance payment for "+qtyText+" – "+style+" style";let upi="upi://pay?pa=9412988700@ptsbi&pn=ARYAN&am="+amount+"&cu=INR&tn=ReelPro+Advance+Payment";document.getElementById("qrImg").src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data="+encodeURIComponent(upi);}}
+
+// Payment success simulation
+function paymentSuccess(){let name=document.getElementById("upiname").value;let phone=document.getElementById("upiwhatsapp").value;let qty=document.getElementById("upiquantity").selectedOptions[0].text;let style=document.getElementById("upistyle").value;let amount=document.getElementById("upiquantity").value;if(!name || !phone || !qty || !style){ alert("Fill all details"); return; }let message="🔥 ReelPro Advance Payment Received 🔥%0A%0A"+"Name: "+name+"%0A"+"WhatsApp: "+phone+"%0A"+"Reel Quantity: "+qty+"%0A"+"Style: "+style+"%0A"+"Amount Paid: ₹"+amount;window.open("https://wa.me/919412988700?text="+message,"_blank");alert("Advance payment recorded! WhatsApp notification ready.");}
+</script>
+
+</body>
+</html>
